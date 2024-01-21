@@ -6,6 +6,7 @@
 
 import React, { useState } from 'react';
 import ToDoItem from './ToDoItem';
+import InputArea from './InputArea';
 
 function App() {
   const [items, setItems] = useState<string>('');
@@ -37,12 +38,11 @@ function App() {
       <div className="heading">
         <h1>To-Do List</h1>
       </div>
-      <div className="form">
-        <input type="text" onChange={changeHandler} value={items} />
-        <button onClick={addButtonHandler}>
-          <span>Add</span>
-        </button>
-      </div>
+      <InputArea
+        itemValue={items}
+        onChange={(event) => changeHandler(event)}
+        onClick={addButtonHandler}
+      />
       <div>
         <ul>
           {toDoList.map((item, index) => (
@@ -51,7 +51,7 @@ function App() {
               id={index}
               item={item}
               itemValue={items}
-              onChecked={()=> deleteItem(index)}
+              onChecked={() => deleteItem(index)}
             />
           ))}
         </ul>
